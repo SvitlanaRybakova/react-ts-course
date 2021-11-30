@@ -7,7 +7,7 @@ interface ListProps<T>{
 // reusful generic component
 export default function List<T>(props: ListProps<T>){
   return (
-    <div>
+    <div style={{marginTop: "3em"}} >
       {props.items.map(props.renderItem)}
     </div>
   )

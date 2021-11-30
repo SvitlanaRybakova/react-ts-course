@@ -3,13 +3,14 @@ import React, { useState, useEffect } from "react";
 import Card, { CardVariant } from "./components/Card";
 import UserList from "./components/UserList";
 import { IUser, ITodo } from "./types/types";
-import List from './components/List'
-import User from './components/User'
+import List from "./components/List";
+import User from "./components/User";
 import TodoItem from "./components/TodoItem";
+import EventExample from "./components/EventsExample";
 
 const App: React.FC = () => {
   const [users, setUsers] = useState<IUser[]>([]);
-  const [todos, setTodos] = useState<ITodo[]>([])
+  const [todos, setTodos] = useState<ITodo[]>([]);
   // ex
   // const user: IUser[] = [
   //   {
@@ -42,16 +43,16 @@ const App: React.FC = () => {
     }
   }
 
-   async function fetchTodos() {
-     try {
-       const response = await axios.get<ITodo[]>(
-         "https://jsonplaceholder.typicode.com/todos?_limit=10"
-       );
-       setTodos(response.data);
-     } catch (e) {
-       console.log("The error has been occured", e);
-     }
-   }
+  async function fetchTodos() {
+    try {
+      const response = await axios.get<ITodo[]>(
+        "https://jsonplaceholder.typicode.com/todos?_limit=10"
+      );
+      setTodos(response.data);
+    } catch (e) {
+      console.log("The error has been occured", e);
+    }
+  }
 
   const handleClick = (num: number) => {
     console.log("clicked, set from child", num);
@@ -72,7 +73,11 @@ const App: React.FC = () => {
       {/* reusful generic component for users */}
       <List items={users} renderItem={(user: IUser) => <User user={user} />} />
       {/* reusful generic component for todos */}
-      <List items={todos} renderItem={(todo: ITodo) => <TodoItem todo={todo} />} />
+      <List
+        items={todos}
+        renderItem={(todo: ITodo) => <TodoItem todo={todo} />}
+      />
+      <EventExample />
     </div>
   );
 };
