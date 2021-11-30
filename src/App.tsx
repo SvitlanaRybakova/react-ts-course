@@ -3,6 +3,8 @@ import React, { useState, useEffect } from "react";
 import Card, { CardVariant } from "./components/Card";
 import UserList from "./components/UserList";
 import { IUser } from "./types/types";
+import List from './components/List'
+import User from './components/User'
 
 const App: React.FC = () => {
   const [users, setUsers] = useState<IUser[]>([]);
@@ -50,7 +52,8 @@ const App: React.FC = () => {
         <button>Works</button>
       </Card>
 
-      <UserList users={users} />
+      {/* <UserList users={users} /> */}
+      <List items={users} renderItem={(user: IUser) => <User user={user}/>}/>
     </div>
   );
 };
